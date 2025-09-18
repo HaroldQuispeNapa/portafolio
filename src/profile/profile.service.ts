@@ -17,8 +17,8 @@ export class ProfileService extends PrismaClient implements OnModuleInit {
     return this.profile.create({ data: createProfileDto });
   }
 
-  findOne() {
-    return this.profile.findFirst();
+  async findOne() {
+    return await this.profile.findFirst() || [];
   }
 
   remove(id: string) {
