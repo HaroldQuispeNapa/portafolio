@@ -36,7 +36,7 @@ model Activity {
   id        String   @id @default(uuid())
   name      String
   content   String
-  icon      String
+  //icon      String
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
 }
@@ -45,7 +45,7 @@ model SoftSkill {
   id        String   @id @default(uuid())
   name      String
   content   String
-  icon      String
+  //icon      String
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
 }

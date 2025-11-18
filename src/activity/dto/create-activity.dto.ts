@@ -7,7 +7,4 @@ export class CreateActivityDto {
 
   @IsString()
   content: string;
-
-  @IsString()
-  icon: string;
 }
