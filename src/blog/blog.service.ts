@@ -1,26 +1,30 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { CreateBlogDto } from './dto/create-blog.dto';
-import { UpdateBlogDto } from './dto/update-blog.dto';
+import { PrismaClient } from '@prisma/client';
 
 @Injectable()
-export class BlogService {
+export class BlogService extends PrismaClient implements OnModuleInit {
+  async onModuleInit() {
+    await this.$connect();
+  }
+
   create(createBlogDto: CreateBlogDto) {
-    return 'This action adds a new blog';
+    return this.blog.create({ data: createBlogDto });
   }
 
   findAll() {
-    return `This action returns all blog`;
+    return this.blog.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} blog`;
+  findOne(id: string) {
+    return this.blog.findFirst({ where: { id } });
   }
 
-  update(id: number, updateBlogDto: UpdateBlogDto) {
-    return `This action updates a #${id} blog`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} blog`;
+  remove(id: string) {
+    return this.blog.delete({ where: { id } });
   }
 }
