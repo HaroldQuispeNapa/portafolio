@@ -8,9 +8,6 @@ export class CreateBlogDto {
   @IsString()
   category  :string
 
-  @IsString()
-  image     :string
-
   @IsUrl()
   link      :string
 

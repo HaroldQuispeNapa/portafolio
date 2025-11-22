@@ -9,8 +9,8 @@ export class BlogController {
 
   @Post()
   @UseInterceptors(FileInterceptor('image'))
-  create(@
-    Body() createBlogDto: CreateBlogDto,
+  create(
+    @Body() createBlogDto: CreateBlogDto,
     @UploadedFile() image: Express.Multer.File
     ){
     return this.blogService.create(createBlogDto, image);

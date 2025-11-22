@@ -1,6 +1,6 @@
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { Injectable } from '@nestjs/common';
+import { Get, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UploaderService {
@@ -22,13 +22,14 @@ export class UploaderService {
       Bucket: this.bucketName,
       Key: key + '.jpg',
       Body: image.buffer,
+      ContentType: image.mimetype,
     });
 
     await this.client.send(command);
   }
 
   async getSignedUrl(key: string): Promise<string> {
-    const command = new PutObjectCommand({
+    const command = new GetObjectCommand({
       Bucket: this.bucketName,
       Key: key + '.jpg',
     });
