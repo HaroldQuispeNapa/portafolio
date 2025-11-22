@@ -10,7 +10,6 @@ import { SkillModule } from './skill/skill.module';
 import { ProjectModule } from './project/project.module';
 import { BlogModule } from './blog/blog.module';
 import { MessageModule } from './message/message.module';
-import { BlogModule } from './blog/blog.module';
 
 @Module({
   imports: [ProfileModule, ResumeModule, ActivityModule, SoftSkillModule, EducationModule, ExperienceModule, LanguageModule, SkillModule, ProjectModule, BlogModule, MessageModule],
